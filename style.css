@@ -1,0 +1,144 @@
+/* 步骤3：全局重置与CSS变量定义 */
+:root {
+    --primary-color: #2c3e50;
+    --accent-color: #3498db;
+    --bg-color: #f8f9fa;
+    --text-color: #333;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+/* 步骤3：使用 Grid 进行整体页面框架布局 */
+.container {
+    display: grid;
+    grid-template-rows: 60px 400px 1fr 60px; /* 导航、首屏、主体、底部 */
+    min-height: 100vh;
+}
+
+/* 导航栏样式 (Flexbox 布局) */
+.navbar {
+    background-color: #fff;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 5%;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--text-color);
+    margin-left: 20px;
+    font-size: 16px;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover {
+    color: var(--accent-color);
+}
+
+/* 首屏展示区 */
+.hero {
+    background: linear-gradient(135deg, #e0f7fa 0%, #ffffff 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.hero h1 {
+    font-size: 3rem;
+    color: var(--primary-color);
+    margin-bottom: 10px;
+}
+
+.btn {
+    margin-top: 20px;
+    padding: 10px 25px;
+    background-color: var(--accent-color);
+    color: #fff;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: transform 0.2s;
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+}
+
+/* 技能展示区 (Grid 布局) */
+.main-content {
+    padding: 50px 5%;
+}
+
+.skills-section h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: var(--primary-color);
+}
+
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* 响应式网格 */
+    gap: 20px;
+}
+
+.skill-card {
+    background-color: #fff;
+    padding: 30px;
+    text-align: center;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    transition: box-shadow 0.3s;
+}
+
+.skill-card:hover {
+    box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+}
+
+/* 底部 */
+.footer {
+    background-color: var(--primary-color);
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+}
+
+/* 步骤4：媒体查询实现响应式布局 */
+@media (max-width: 768px) {
+    .container {
+        grid-template-rows: auto auto 1fr auto; /* 移动端高度自适应 */
+    }
+    .navbar {
+        flex-direction: column;
+        padding: 15px 0;
+    }
+    .nav-links {
+        margin-top: 15px;
+    }
+    .nav-links a {
+        margin: 0 10px;
+    }
+    .hero h1 {
+        font-size: 2rem;
+    }
+}
